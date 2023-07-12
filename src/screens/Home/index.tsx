@@ -1,13 +1,18 @@
 // import React
-import { SafeAreaView, Text } from "react-native"
+import { View } from "react-native"
 
 // import Styles
 import { styles } from './styles'
 
+// import Components
+import { Input } from "../../components/Input"
+import { Header } from "../../components/Header"
+
 export const Home = () => {
     return (
-        <SafeAreaView style={styles.container}>
-            <Text style={styles.homeColor}>Olá</Text>
-        </SafeAreaView>
+        <View style={styles.container}>
+            <Header />
+            <Input />
+        </View>
     )
 }
