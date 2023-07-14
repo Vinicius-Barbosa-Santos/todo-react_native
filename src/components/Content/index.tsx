@@ -12,12 +12,16 @@ import { ListTasks } from "../ListTasks"
 
 interface Props {
     tasks: TasksType[],
+    tasksCreated: number,
+    tasksFinished: number
     onHandleChecked: (id: number) => void
     onHandleDelete: (id: number) => void
 }
 
 export const Content = ({
     tasks,
+    tasksCreated,
+    tasksFinished,
     onHandleChecked,
     onHandleDelete
 }: Props) => {
@@ -28,13 +32,13 @@ export const Content = ({
                 <View style={styles.taskCreatedContent}>
                     <Text style={styles.taskCreated}>Criadas</Text>
                     <View style={styles.numberBorder}>
-                        <Text style={styles.number}>0</Text>
+                        <Text style={styles.number}>{tasksCreated}</Text>
                     </View>
                 </View>
                 <View style={styles.finishTaskContent}>
                     <Text style={styles.finishTask}>Concluídas</Text>
                     <View style={styles.numberBorder}>
-                        <Text style={styles.number}>0</Text>
+                        <Text style={styles.number}>{tasksFinished}</Text>
                     </View>
                 </View>
             </View>
