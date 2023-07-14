@@ -10,9 +10,14 @@ import { ListTasks } from "../ListTasks"
 interface Props {
     tasks: TasksType[],
     onHandleChecked: (id: number) => void
+    onHandleDelete: (id: number) => void
 }
 
-export const Content = ({ tasks, onHandleChecked }: Props) => {
+export const Content = ({
+    tasks,
+    onHandleChecked,
+    onHandleDelete
+}: Props) => {
     const [taskIsVisible, setTaskIsVisible] = useState<boolean>(true)
 
     return (
@@ -52,7 +57,12 @@ export const Content = ({ tasks, onHandleChecked }: Props) => {
             {taskIsVisible &&
                 <View style={styles.taskIsEmpthy}>
                     {tasks.map((task) => (
-                        <ListTasks key={task.id} tasks={task} onHandleChecked={onHandleChecked} />
+                        <ListTasks
+                            key={task.id}
+                            tasks={task}
+                            onHandleChecked={onHandleChecked}
+                            onHandleDelete={onHandleDelete}
+                        />
                     ))}
                 </View>
             }

@@ -9,12 +9,21 @@ import { styles } from './styles'
 
 interface Props {
     tasks: TasksType,
-    onHandleChecked: (id: number) => void
+    onHandleChecked: (id: number) => void,
+    onHandleDelete: (id: number) => void
 }
 
-export const ListTasks = ({ tasks, onHandleChecked }: Props) => {
+export const ListTasks = ({
+    tasks,
+    onHandleChecked,
+    onHandleDelete,
+}: Props) => {
     const handleChecked = (id: number) => {
         onHandleChecked(id)
+    }
+
+    const handleDelete = (id: number) => {
+        onHandleDelete(id)
     }
 
     return (
@@ -56,7 +65,9 @@ export const ListTasks = ({ tasks, onHandleChecked }: Props) => {
                     }}>
                         {tasks.item}
                     </Text>
-                    <TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={() => handleDelete(tasks.id)}
+                    >
                         <Image
                             resizeMode="contain"
                             style={{

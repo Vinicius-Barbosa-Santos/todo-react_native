@@ -35,11 +35,16 @@ export const Home = () => {
         setTasks(listTasks)
     }
 
+    const handleDelete = (id: number) => {
+        const listTasks = tasks.filter((task) => task.id !== id)
+        setTasks(listTasks)
+    }
+
     return (
         <View style={styles.container}>
             <Header />
             <Input />
-            <Content tasks={tasks} onHandleChecked={handleChecked} />
+            <Content tasks={tasks} onHandleChecked={handleChecked} onHandleDelete={handleDelete} />
         </View>
     )
 }
