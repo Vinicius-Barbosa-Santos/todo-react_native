@@ -3,8 +3,11 @@ import { View, Text, Image } from "react-native"
 
 // import Styles
 import { styles } from "./styles"
-import { useState } from "react"
+
+// import Interfaces
 import { TasksType } from "../../interfaces/TasksType"
+
+// import Components
 import { ListTasks } from "../ListTasks"
 
 interface Props {
@@ -18,7 +21,6 @@ export const Content = ({
     onHandleChecked,
     onHandleDelete
 }: Props) => {
-    const [taskIsVisible, setTaskIsVisible] = useState<boolean>(true)
 
     return (
         <View style={styles.container}>
@@ -37,7 +39,7 @@ export const Content = ({
                 </View>
             </View>
 
-            {!taskIsVisible &&
+            {tasks.length === 0 &&
                 <View style={styles.taskIsEmpthy}>
                     <View style={styles.line} />
 
@@ -54,7 +56,7 @@ export const Content = ({
                 </View>
             }
 
-            {taskIsVisible &&
+            {tasks.length >= 1 &&
                 <View style={styles.taskIsEmpthy}>
                     {tasks.map((task) => (
                         <ListTasks

@@ -30,6 +30,13 @@ export const Home = () => {
         },
     ])
 
+    const handleAddTask = (item: string) => {
+        const id = tasks.length ? tasks[tasks.length - 1].id + 1 : 1
+        const newList = { id, checked: false, item }
+        const listTasks = [...tasks, newList]
+        setTasks(listTasks)
+    }
+
     const handleChecked = (id: number) => {
         const listTasks = tasks.map((task) => task.id === id ? { ...task, checked: !task.checked } : task)
         setTasks(listTasks)
@@ -43,8 +50,14 @@ export const Home = () => {
     return (
         <View style={styles.container}>
             <Header />
-            <Input />
-            <Content tasks={tasks} onHandleChecked={handleChecked} onHandleDelete={handleDelete} />
+            <Input
+                onHandleAddTask={handleAddTask}
+            />
+            <Content
+                tasks={tasks}
+                onHandleChecked={handleChecked}
+                onHandleDelete={handleDelete}
+            />
         </View>
     )
 }
