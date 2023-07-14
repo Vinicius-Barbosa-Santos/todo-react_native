@@ -12,6 +12,7 @@ export const Input = () => {
         <View style={styles.taskInput}>
             <TextInput
                 style={styles.input}
+                value={tasks}
                 onChangeText={(e) => setTasks(e)}
                 placeholder="Adicione uma nova tarefa"
                 placeholderTextColor={'#808080'}
