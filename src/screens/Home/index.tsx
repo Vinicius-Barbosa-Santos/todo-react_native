@@ -30,11 +30,16 @@ export const Home = () => {
         },
     ])
 
+    const handleChecked = (id: number) => {
+        const listTasks = tasks.map((task) => task.id === id ? { ...task, checked: !task.checked } : task)
+        setTasks(listTasks)
+    }
+
     return (
         <View style={styles.container}>
             <Header />
             <Input />
-            <Content tasks={tasks} />
+            <Content tasks={tasks} onHandleChecked={handleChecked} />
         </View>
     )
 }

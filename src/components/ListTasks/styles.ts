@@ -22,11 +22,4 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-between',
     },
-    task: {
-        fontSize: 14,
-        maxWidth: 230,
-        marginLeft: 11,
-        marginRight: 15,
-        color: '#F2F2F2',
-    },
 })

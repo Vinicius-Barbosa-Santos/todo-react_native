@@ -6,17 +6,15 @@ import { TasksType } from "../../interfaces/TasksType"
 
 // import Styles
 import { styles } from './styles'
-import { useState } from "react"
 
 interface Props {
-    tasks: TasksType
+    tasks: TasksType,
+    onHandleChecked: (id: number) => void
 }
 
-export const ListTasks = ({ tasks }: Props) => {
-    const [checkbox, setCheckbox] = useState<boolean>(false)
-
-    const handleChecked = () => {
-        setCheckbox(!checkbox)
+export const ListTasks = ({ tasks, onHandleChecked }: Props) => {
+    const handleChecked = (id: number) => {
+        onHandleChecked(id)
     }
 
     return (
@@ -31,13 +29,13 @@ export const ListTasks = ({ tasks }: Props) => {
                             borderWidth: 2,
                             alignItems: 'center',
                             justifyContent: 'center',
-                            borderColor: checkbox ? '#5E60CE' : '#4EA8DE',
-                            backgroundColor: checkbox ? '#5E60CE' : 'transparent',
+                            borderColor: tasks.checked ? '#5E60CE' : '#4EA8DE',
+                            backgroundColor: tasks.checked ? '#5E60CE' : 'transparent',
                         }}
                         activeOpacity={0.7}
-                        onPress={handleChecked}
+                        onPress={() => handleChecked(tasks.id)}
                     >
-                        {checkbox &&
+                        {tasks.checked &&
                             <Image
                                 resizeMode="contain"
                                 style={{
@@ -48,7 +46,16 @@ export const ListTasks = ({ tasks }: Props) => {
                             />
                         }
                     </TouchableOpacity>
-                    <Text style={styles.task}>{tasks.item}</Text>
+                    <Text style={{
+                        fontSize: 14,
+                        maxWidth: 230,
+                        marginLeft: 11,
+                        marginRight: 15,
+                        color: tasks.checked ? '#808080' : '#F2F2F2',
+                        textDecorationLine: tasks.checked ? 'line-through' : undefined,
+                    }}>
+                        {tasks.item}
+                    </Text>
                     <TouchableOpacity>
                         <Image
                             resizeMode="contain"

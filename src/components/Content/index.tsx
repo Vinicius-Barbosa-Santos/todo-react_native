@@ -8,10 +8,11 @@ import { TasksType } from "../../interfaces/TasksType"
 import { ListTasks } from "../ListTasks"
 
 interface Props {
-    tasks: TasksType[]
+    tasks: TasksType[],
+    onHandleChecked: (id: number) => void
 }
 
-export const Content = ({ tasks }: Props) => {
+export const Content = ({ tasks, onHandleChecked }: Props) => {
     const [taskIsVisible, setTaskIsVisible] = useState<boolean>(true)
 
     return (
@@ -51,7 +52,7 @@ export const Content = ({ tasks }: Props) => {
             {taskIsVisible &&
                 <View style={styles.taskIsEmpthy}>
                     {tasks.map((task) => (
-                        <ListTasks key={task.id} tasks={task} />
+                        <ListTasks key={task.id} tasks={task} onHandleChecked={onHandleChecked} />
                     ))}
                 </View>
             }
