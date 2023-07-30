@@ -9,6 +9,7 @@ import { TasksType } from "../../interfaces/TasksType"
 
 // import Components
 import { ListTasks } from "../ListTasks"
+import { ScrollView } from "react-native"
 
 interface Props {
     tasks: TasksType[],
@@ -62,14 +63,18 @@ export const Content = ({
 
             {tasks.length >= 1 &&
                 <View style={styles.taskIsEmpthy}>
-                    {tasks.map((task) => (
-                        <ListTasks
-                            key={task.id}
-                            tasks={task}
-                            onHandleChecked={onHandleChecked}
-                            onHandleDelete={onHandleDelete}
-                        />
-                    ))}
+                    <ScrollView
+                        showsVerticalScrollIndicator={false}
+                    >
+                        {tasks.map((task) => (
+                            <ListTasks
+                                key={task.id}
+                                tasks={task}
+                                onHandleChecked={onHandleChecked}
+                                onHandleDelete={onHandleDelete}
+                            />
+                        ))}
+                    </ScrollView>
                 </View>
             }
         </View>
