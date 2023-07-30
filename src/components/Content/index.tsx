@@ -3,16 +3,28 @@ import { View, Text, Image } from "react-native"
 
 // import Styles
 import { styles } from "./styles"
-import { useState } from "react"
+
+// import Interfaces
 import { TasksType } from "../../interfaces/TasksType"
+
+// import Components
 import { ListTasks } from "../ListTasks"
 
 interface Props {
-    tasks: TasksType[]
+    tasks: TasksType[],
+    tasksCreated: number,
+    tasksFinished: number
+    onHandleChecked: (id: number) => void
+    onHandleDelete: (id: number) => void
 }
 
-export const Content = ({ tasks }: Props) => {
-    const [taskIsVisible, setTaskIsVisible] = useState<boolean>(true)
+export const Content = ({
+    tasks,
+    tasksCreated,
+    tasksFinished,
+    onHandleChecked,
+    onHandleDelete
+}: Props) => {
 
     return (
         <View style={styles.container}>
@@ -20,18 +32,18 @@ export const Content = ({ tasks }: Props) => {
                 <View style={styles.taskCreatedContent}>
                     <Text style={styles.taskCreated}>Criadas</Text>
                     <View style={styles.numberBorder}>
-                        <Text style={styles.number}>0</Text>
+                        <Text style={styles.number}>{tasksCreated}</Text>
                     </View>
                 </View>
                 <View style={styles.finishTaskContent}>
                     <Text style={styles.finishTask}>Concluídas</Text>
                     <View style={styles.numberBorder}>
-                        <Text style={styles.number}>0</Text>
+                        <Text style={styles.number}>{tasksFinished}</Text>
                     </View>
                 </View>
             </View>
 
-            {!taskIsVisible &&
+            {tasks.length === 0 &&
                 <View style={styles.taskIsEmpthy}>
                     <View style={styles.line} />
 
@@ -48,10 +60,15 @@ export const Content = ({ tasks }: Props) => {
                 </View>
             }
 
-            {taskIsVisible &&
+            {tasks.length >= 1 &&
                 <View style={styles.taskIsEmpthy}>
                     {tasks.map((task) => (
-                        <ListTasks key={task.id} tasks={task} />
+                        <ListTasks
+                            key={task.id}
+                            tasks={task}
+                            onHandleChecked={onHandleChecked}
+                            onHandleDelete={onHandleDelete}
+                        />
                     ))}
                 </View>
             }

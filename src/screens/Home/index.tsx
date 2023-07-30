@@ -12,29 +12,45 @@ import { Content } from "../../components/Content"
 import { TasksType } from "../../interfaces/TasksType"
 
 export const Home = () => {
-    const [tasks, setTasks] = useState<TasksType[]>([
-        {
-            id: 1,
-            checked: false,
-            item: 'Integer urna interdum massa libero auctor neque turpis turpis semper.'
-        },
-        {
-            id: 2,
-            checked: false,
-            item: 'Integer urna interdum massa libero auctor neque turpis turpis semper.'
-        },
-        {
-            id: 3,
-            checked: false,
-            item: 'Integer urna interdum massa libero auctor neque turpis turpis semper.'
-        },
-    ])
+    const [tasks, setTasks] = useState<TasksType[]>([])
+    const [tasksCreated, setTasksCreated] = useState<number>(0)
+    const [tasksFinished, setTasksFinished] = useState<number>(0)
+
+    const handleAddTask = (item: string) => {
+        const id = tasks.length ? tasks[tasks.length - 1].id + 1 : 1
+        const newList = { id, checked: false, item }
+        const listTasks = [...tasks, newList]
+        setTasks(listTasks)
+        setTasksCreated(tasksCreated + 1)
+    }
+
+    const handleChecked = (id: number) => {
+        const listTasks = tasks.map((task) => task.id === id ? { ...task, checked: !task.checked } : task)
+        setTasks(listTasks)
+
+        const filterListTasksIsTrue = listTasks.filter((tasks) => tasks.checked === true)
+        setTasksFinished(filterListTasksIsTrue.length)
+    }
+
+    const handleDelete = (id: number) => {
+        const listTasks = tasks.filter((task) => task.id !== id)
+        setTasks(listTasks)
+        setTasksCreated(tasksCreated - 1)
+    }
 
     return (
         <View style={styles.container}>
             <Header />
-            <Input />
-            <Content tasks={tasks} />
+            <Input
+                onHandleAddTask={handleAddTask}
+            />
+            <Content
+                tasks={tasks}
+                tasksCreated={tasksCreated}
+                tasksFinished={tasksFinished}
+                onHandleChecked={handleChecked}
+                onHandleDelete={handleDelete}
+            />
         </View>
     )
 }
