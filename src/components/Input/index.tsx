@@ -1,6 +1,6 @@
 // import React
 import { useState } from "react"
-import { TextInput, TouchableOpacity, View, Image } from "react-native"
+import { TextInput, TouchableOpacity, View, Image, Alert } from "react-native"
 
 // import Styles
 import { styles } from './styles'
@@ -13,9 +13,9 @@ export const Input = ({ onHandleAddTask }: Props) => {
     const [tasks, setTasks] = useState('')
 
     const handleAddTask = (tasks: string) => {
-        setTasks('')
-        if (!tasks) return
+        if (!tasks) return Alert.alert('Preencha o campo!')
         onHandleAddTask(tasks)
+        setTasks('')
     }
 
     return (

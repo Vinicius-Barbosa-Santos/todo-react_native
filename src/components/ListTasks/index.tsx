@@ -1,5 +1,5 @@
 // import React
-import { View, Text, TouchableOpacity, Image } from "react-native"
+import { View, Text, TouchableOpacity, Image, Alert } from "react-native"
 
 // import Interfaces
 import { TasksType } from "../../interfaces/TasksType"
@@ -23,7 +23,16 @@ export const ListTasks = ({
     }
 
     const handleDelete = (id: number) => {
-        onHandleDelete(id)
+        Alert.alert("Remover", `Deseja Remover tarefa?`, [
+            {
+                text: 'Sim',
+                onPress: () => onHandleDelete(id)
+            },
+            {
+                text: 'Não',
+                style: 'cancel'
+            }
+        ])
     }
 
     return (
