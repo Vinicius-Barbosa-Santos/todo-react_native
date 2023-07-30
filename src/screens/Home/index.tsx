@@ -36,6 +36,9 @@ export const Home = () => {
         const listTasks = tasks.filter((task) => task.id !== id)
         setTasks(listTasks)
         setTasksCreated(tasksCreated - 1)
+
+        const filterListTasksIsTrue = listTasks.filter((tasks) => tasks.checked === true)
+        setTasksFinished(filterListTasksIsTrue.length)
     }
 
     return (
