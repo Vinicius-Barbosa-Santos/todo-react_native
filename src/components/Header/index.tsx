@@ -9,7 +9,10 @@ export const Header = () => {
         <SafeAreaView style={styles.container}>
             <Image 
                 resizeMode="contain"
-                style={{ width: 110, height: 70 }}
+                style={{ 
+                    width: 110, 
+                    height: 70 
+                }}
                 source={require('../../assets/logo.png')} 
             />
         </SafeAreaView>
