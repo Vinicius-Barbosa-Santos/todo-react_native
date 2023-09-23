@@ -7,6 +7,10 @@
 <p align="center">
   <img alt="Projeto" src="https://github.com/Vinicius-Barbosa-Santos/todo-react_native/blob/main/Cover.png">
   <br />
+  <br />
+  <br />
+  <br />
+  <br />
   <img alt="Projeto" src="https://github.com/Vinicius-Barbosa-Santos/todo-react_native/blob/main/to-do.png" width="300px">
 </p>
 
