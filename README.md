@@ -14,6 +14,7 @@
 
 Esse projeto foi desenvolvido com as seguintes tecnologias:
 
+- [Expo](https://expo.dev/)
 - [React Native](https://reactnative.dev/)
 - [TypeScript](https://www.typescriptlang.org/)
 
